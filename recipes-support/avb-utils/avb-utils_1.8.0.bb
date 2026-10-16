@@ -7,7 +7,7 @@ SRC_URI = " \
     git://github.com/embetrix/avb-utils.git;name=avb-utils;protocol=https;branch=master \
     "
 # tag: 1.8.0
-SRCREV = "4e75d749df4878acbe959b8b6b106bd894e75bcd"
+SRCREV = "d1fa293349a4f2ea1ed537e60a72de7dd538d7da"
 
 DEPENDS += "libavb python3-avbtool-native"
 
