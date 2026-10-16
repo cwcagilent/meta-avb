@@ -80,8 +80,9 @@ sign_root_hash() {
     X509_CERT=$3
 
     ROOT_HASH=$(echo "${DM_TABLE}" | awk '{print $12}')
-    ROOTHASH_FILE="${WORKDIR}/roothash.txt"
-    ROOTHASH_SIG="${WORKDIR}/roothash.txt.signed"
+    # Per-hash names for the same reason as PUBKEY above: parallel conversions.
+    ROOTHASH_FILE="${WORKDIR}/roothash.${ROOT_HASH}.txt"
+    ROOTHASH_SIG="${ROOTHASH_FILE}.signed"
     printf '%s' "${ROOT_HASH}" > "${ROOTHASH_FILE}"
 
     openssl cms -sign -nocerts -noattr -binary \
@@ -96,7 +97,9 @@ generate_verity_cmdline() {
     IMAGE=$1
     SIG_ARGS=""
 
-    PUBKEY="${WORKDIR}/avb_pubkey.bin"
+    # Per-image name: every do_image_<type> conversion shares one WORKDIR and the
+    # tasks run in parallel, so a fixed filename here is a read/write race.
+    PUBKEY="${WORKDIR}/avb_pubkey.$(basename "${IMAGE}").bin"
     avbtool extract_public_key --key "${AVB_SIGN_KEY}" --output "${PUBKEY}"
 
     DM_TABLE=$(avb_verify -n -t -d "${IMAGE}" -k "${PUBKEY}")
