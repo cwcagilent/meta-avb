@@ -43,10 +43,8 @@ PV = "1.0+git"
 # Keep objects out of S: the link globs *.o, and S is seven checked-out AOSP trees.
 B = "${WORKDIR}/build"
 
-# libavb is built in statically, as AOSP does. Linking the libavb recipe's shared
-# library instead would bake in a NEEDED of "libavb.so." -- it builds the soname
-# from ${PV%%.*} inside a shell function, which bitbake leaves literal and the
-# shell expands to nothing because PV is not exported to it.
+# libavb is built in statically, as AOSP does, at the revision avb.inc pins so
+# the parity writer and the verifier agree on the descriptor format.
 DEPENDS = "openssl-native zlib-native"
 
 inherit native
