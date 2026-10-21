@@ -50,6 +50,14 @@ do_check_fec:class-native() {
     sh ${S}/tests/fec_roundtrip.sh ${B}/fec/fec || bbfatal "fec could not repair a corrupted image"
 }
 
+# INSTALL_AVB_SIGN also installs the submodule's avbtool.py as avbtool when the
+# submodule is present, which the gitsm fetch makes it. python3-avbtool-native
+# already stages ${bindir}/avbtool, from the same AVB revision, and two
+# providers of one path break every recipe that sysroots both.
+do_install:append:class-native() {
+    rm -f ${D}${bindir}/avbtool
+}
+
 RDEPENDS:${PN}:class-target = "avb-keys"
 RDEPENDS:${PN}-python = "python3-core python3-avbtool openssl"
 
