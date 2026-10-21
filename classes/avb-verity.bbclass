@@ -8,9 +8,9 @@
 #   for it and set up dm-verity via dmsetup at runtime.
 inherit image_types
 
-# fec is named here as well as in avb-utils: avbtool shells out to it while
-# avb_sign runs in this recipe's sysroot, and OE stages direct DEPENDS only.
-DEPENDS += "avb-utils-native fec-native"
+# avb-utils-native carries avb_sign, avbtool and the fec tool avbtool shells
+# out to.
+DEPENDS += "avb-utils-native"
 CONVERSIONTYPES += "avbverity"
 
 WICVARS:append = " AVB_SIGN_KEY AVB_ALGORITHM AVB_HASH_ALGORITHM AVB_ROOT_HASH_SIGN AVB_X509 AVB_FEC_ROOTS"
@@ -134,4 +134,4 @@ generate_verity_cmdline() {
 }
 
 CONVERSION_CMD:avbverity = "avbverity_setup ${IMAGE_NAME}.${type} ${IMAGE_NAME}.${type}.avbverity"
-CONVERSION_DEPENDS_avbverity = "avb-utils-native fec-native"
+CONVERSION_DEPENDS_avbverity = "avb-utils-native"
