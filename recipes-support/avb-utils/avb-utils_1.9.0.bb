@@ -13,10 +13,10 @@ SRC_URI = " \
 SRC_URI:class-native = " \
     gitsm://github.com/cwcagilent/avb-utils.git;name=avb-utils;protocol=https;branch=refactor-fec \
     "
-# 1.8.0 (d1fa2933) plus the FEC series and the in-tree fec build, from the
-# fork carrying them until upstream takes the series. Not yet tagged. The
-# branch is refactor-fec until that work is merged to master.
-SRCREV = "8dc296049c25d87bcd8e384a8f20d46c6329c89b"
+# The fork's 1.9.0 tag: 1.8.0 (d1fa2933) plus the FEC series, the in-tree fec
+# build and --no-fec, carried here until upstream takes the series. The branch
+# is refactor-fec until that work is merged to master.
+SRCREV = "101efa1a4b64aa4eea84191eb4b71e6784399322"
 
 DEPENDS += "libavb python3-avbtool-native"
 # For fec: libavb is built in statically from the submodule, but the
