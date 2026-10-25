@@ -8,14 +8,14 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=570a9b3749dd0463a1778803b12a6dce"
 # which is assembled from six AOSP repositories that are submodules under fec/,
 # so it fetches them.
 SRC_URI = " \
-    git://github.com/cwcagilent/avb-utils.git;name=avb-utils;protocol=https;branch=master \
+    git://github.com/embetrix/avb-utils.git;name=avb-utils;protocol=https;branch=master \
     "
 SRC_URI:class-native = " \
-    gitsm://github.com/cwcagilent/avb-utils.git;name=avb-utils;protocol=https;branch=master \
+    gitsm://github.com/embetrix/avb-utils.git;name=avb-utils;protocol=https;branch=master \
     "
 # The fork's 1.9.0 tag: 1.8.0 (d1fa2933) plus the FEC series, the in-tree fec
 # build and --no-fec, carried here until upstream takes the series.
-SRCREV = "101efa1a4b64aa4eea84191eb4b71e6784399322"
+SRCREV = "9c870b30138f3836748ec0811c40db2b78fe4969"
 
 DEPENDS += "libavb python3-avbtool-native"
 # For fec: libavb is built in statically from the submodule, but the
