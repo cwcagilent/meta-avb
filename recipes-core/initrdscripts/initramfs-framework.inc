@@ -6,7 +6,7 @@ SRC_URI:append = "\
 
 do_install:append() {
     # avb-verity
-    install -m 0755 ${UNPACKDIR}/avbverity ${D}/init.d/80-avbverity
+    install ${UNPACKDIR}/avbverity ${D}/init.d/80-avbverity
 }
 
 PACKAGES:append = " initramfs-module-avb-verity"
