@@ -104,6 +104,7 @@ directly.
 | `avb-verity-image-initramfs` | Minimal initramfs with avb_verify, devmapper, and udev |
 | `avb-utils` | CMake-based toolkit wrapping Android AVB for embedded Linux |
 | `libavb` | Shared library for AVB verification primitives |
+| `fec` | AOSP forward error correction tool avbtool uses to write dm-verity parity |
 | `kernel-trusted-keys.bbclass` | Bundles X.509 certificates into the kernel trusted keyring |
 
 ## Dependencies

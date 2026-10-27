@@ -8,8 +8,8 @@
 #   for it and set up dm-verity via dmsetup at runtime.
 inherit image_types
 
-# avb-utils-native carries avb_sign, avbtool and the fec tool avbtool shells
-# out to.
+# avb-utils-native carries avb_sign and avbtool, and pulls in fec-native for
+# the fec tool avbtool shells out to.
 DEPENDS += "avb-utils-native"
 CONVERSIONTYPES += "avbverity"
 
